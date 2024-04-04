@@ -1,9 +1,13 @@
 input[type="text"] {
   border: solid 1px var(--primary-color);
+  background-color: var(--accent-color);
   padding: 10px;
   border-radius: 8px;
   margin-right: 4px;
   display: inline-block;
   width: 50%;
+}
 
+::placeholder {
+  color: var(--text-color)
 }
