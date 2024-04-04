@@ -1,8 +1,8 @@
 /* src/app/details/details.component.css */
 
 .listing-photo {
-  height: 600px;
-  width: 50%;
+  height: auto;
+  width: 20%;
   object-fit: cover;
   border-radius: 30px;
   float: right;
@@ -18,14 +18,14 @@
   content: url('/assets/location-pin.svg') / '';
 }
 
-.listing-location {
+.durationTotal {
   font-size: 24pt;
   margin-bottom: 15px;
 }
 
 .listing-features > .section-heading {
   color: var(--secondary-color);
-  font-size: 24pt;
+  font-size: 20pt;
   margin-bottom: 15px;
 }
 
@@ -35,6 +35,13 @@
 
 .listing-features li {
   font-size: 14pt;
+  margin: 10px;
+}
+
+.icon {
+  width: 30pt;
+  padding: 5px;
+  object-fit: cover;
 }
 
 li {
@@ -49,12 +56,14 @@ li {
 label, input {
   display: block;
 }
+
 label {
   color: var(--secondary-color);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 12pt;
 }
+
 input {
   font-size: 16pt;
   margin-bottom: 15px;
