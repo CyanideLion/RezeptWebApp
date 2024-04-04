@@ -3,23 +3,27 @@ import {RecipeCollectionComponent} from "../recipeCollection/recipeCollection.co
 import {Recipe} from "../recipe";
 import {NgForOf} from "@angular/common";
 import {RecipeService} from "../recipe.service";
+import {SearchInputComponent} from "../search-input/search-input.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     RecipeCollectionComponent,
-    NgForOf
+    NgForOf,
+    SearchInputComponent
   ],
   template: `
     <section>
-      <form>
-        <input type="text" placeholder="Rezept suchen">
-        <button class="primary" type="button">Suchen</button>
-      </form>
+      <app-search-input (textChange)="onTextChange($event)"></app-search-input>
+      <button class="primary" type="button">Filter</button> <!-- not working yet -->
+<!--      <form>-->
+<!--        <input type="text" placeholder="Rezept suchen" #filter>-->
+<!--        <button class="primary" type="button" (click)="filterResults(filter.value)">Suchen</button>-->
+<!--      </form>-->
     </section>
     <section class="results">
-      <app-recipeCollection *ngFor="let recipe of recipeList" [recipe]="recipe"></app-recipeCollection>
+      <app-recipeCollection *ngFor="let recipe of filteredRecipeList" [recipe]="recipe"></app-recipeCollection>
     </section>
   `,
   styleUrl: './home.component.css'
@@ -27,9 +31,22 @@ import {RecipeService} from "../recipe.service";
 export class HomeComponent {
   recipeList: Recipe[] = [];
   recipeService: RecipeService = inject(RecipeService);
+  filteredRecipeList: Recipe[] = [];
 
   constructor() {
     this.recipeList = this.recipeService.getAllRecipes();
+    this.filteredRecipeList = this.recipeService.getAllRecipes();
   }
 
+  filterResults(text: string) {
+    if (!text) this.filteredRecipeList = this.recipeList;
+
+    this.filteredRecipeList = this.recipeList.filter(
+      recipe => recipe?.name.toLowerCase().includes(text.toLowerCase())
+    );
+  }
+
+  onTextChange(changedText: string) {
+    this.filterResults(changedText);
+  }
 }

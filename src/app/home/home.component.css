@@ -18,6 +18,10 @@ input[type="text"] {
   width: 30%;
 }
 
+app-search-input {
+  padding: 15px;
+}
+
 button {
   padding: 10px;
   border: solid 1px var(--primary-color);
