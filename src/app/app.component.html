@@ -1,12 +1,15 @@
 <main>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
   <header class="navbar">
-        <a [routerLink]="['']">
-          <img class="brand-logo" src="assets/logo.svg" alt="Logo" aria-hidden="true">
-        </a>
-      </header>
-    <section class="content">
-      <router-outlet></router-outlet>
-    </section>
+    <a [routerLink]="['']">
+      <img class="brand-logo" src="assets/RezeptWebAppLogo.svg" alt="Logo" aria-hidden="true">
+    </a>
+    <app-theme-toggle></app-theme-toggle>
+  </header>
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
 
 </main>
 <router-outlet/>
