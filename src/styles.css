@@ -5,14 +5,22 @@
   padding: 0;
 }
 
-body {
-  font-family: 'Be Vietnam Pro', sans-serif;
-}
+
+
 :root {
-  --primary-color: #605DC8;
-  --secondary-color: #8B89E6;
-  --accent-color: #e8e7fa;
+  --primary-color: #9c27b0;
+  --secondary-color: #b599e8;
+  --accent-color: #d6bbe8;
   --shadow-color: #E8E8E8;
+  --text-color: #000000;
+}
+
+.dark-theme {
+  background-color: #2a2626;
+  --secondary-color: #7857a9;
+  --accent-color: #2d2b41;
+  --shadow-color: #4f4f4f;
+  --text-color: lightgrey;
 }
 
 button.primary {
@@ -26,4 +34,13 @@ button.primary {
 
 button.primary:active {
   background-color: #4a47a3;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
