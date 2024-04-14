@@ -1,6 +1,14 @@
 {
   "name": "rezepte",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "author": {
+    "name": "Laurin Neubert",
+    "email": "laurin@neubert.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CyanideLion/RezeptWebApp.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
