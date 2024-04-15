@@ -1,17 +1,21 @@
 /* src/app/details/details.component.css */
 
 .listing-photo {
+  padding: 10px;
   height: auto;
   width: 20%;
   object-fit: cover;
   border-radius: 30px;
   float: right;
+  margin-bottom: 20px;
 }
 
 .listing-heading {
+  padding-top: var(--content-padding);
   font-size: 48pt;
   font-weight: bold;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: var(--primary-color);
 }
 
@@ -21,14 +25,17 @@
 
 
 .durationTotal {
+  padding-top: var(--content-padding);
   font-size: 24pt;
-  margin-bottom: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   color: var(--text-color);
 }
 
 .listing-features > .section-heading {
   color: var(--secondary-color);
   font-size: 20pt;
+  margin-top: 15px;
   margin-bottom: 15px;
 }
 
