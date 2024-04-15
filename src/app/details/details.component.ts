@@ -53,7 +53,7 @@ import {MatIcon} from "@angular/material/icon";
           <li>Zubereitung: {{ recipe?.steps }}</li>
           <li>Hinweis: {{ recipe?.notes }}</li>
           <li>Rezept von: {{ recipe?.source }}</li>
-          <li>Hinzugefügt am: {{ recipe?.date }}</li>
+          <li>Hinzugefügt am {{ recipe && formatDate(recipe.date) }}</li>
         </ul>
 
 
@@ -74,6 +74,18 @@ export class DetailsComponent {
     this.ingredientList  = this.recipeService.getAllIngredients(recipeId);
   }
 
+  formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    const dateFormatOptions: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }
+
+    return date.toLocaleString('de', dateFormatOptions)
+  }
   getIngredientAmountTypeName(amountType: IngredientAmountType): string {
     return IngredientAmountTypeName.get(amountType) ?? '';
   }
