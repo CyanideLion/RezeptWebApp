@@ -1,7 +1,10 @@
+/* Put these styles in: src/styles.css */
+
 * {
   margin: 0;
   padding: 0;
 }
+
 
 
 :root {
@@ -16,7 +19,7 @@
   background-color: #2a2626;
   --secondary-color: #7857a9;
   --accent-color: #2d2b41;
-  --shadow-color: #1c1c1c;
+  --shadow-color: #4f4f4f;
   --text-color: lightgrey;
 }
 
@@ -41,4 +44,3 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
