@@ -1,7 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RecipeService} from "../recipe.service";
-import {Recipe} from "../recipe";
+import {
+  Ingredient,
+  IngredientAmountType,
+  IngredientAmountTypeName,
+  Recipe,
+} from '../recipe'
 import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
 
@@ -38,13 +43,17 @@ import {MatIcon} from "@angular/material/icon";
           <li>Vegan: {{ recipe?.vegan }}</li>
           <li>Zutaten:
             <ul>
-              <li *ngFor="let ingredient of recipe?.ingredients">{{ ingredient }}</li>
+              <li *ngFor="let ingredient of recipe?.ingredients">
+                {{ ingredient.amount }}
+                {{ getIngredientAmountTypeName(ingredient.amountType) }}
+                {{ ingredient.name }}
+              </li>
             </ul>
           </li>
           <li>Zubereitung: {{ recipe?.steps }}</li>
           <li>Hinweis: {{ recipe?.notes }}</li>
           <li>Rezept von: {{ recipe?.source }}</li>
-          <li>Hinzugefügt am: {{ recipe?.date }}</li>
+          <li>Hinzugefügt am {{ recipe && formatDate(recipe.date) }}</li>
         </ul>
 
 
@@ -57,11 +66,27 @@ export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   recipeService = inject(RecipeService);
   recipe: Recipe | undefined;
-  ingredientList: string[] | undefined;
+  ingredientList: Ingredient[] | undefined;
 
   constructor() {
     const recipeId = Number(this.route.snapshot.params['id']);
     this.recipe = this.recipeService.getRecipeByID(recipeId);
     this.ingredientList  = this.recipeService.getAllIngredients(recipeId);
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString)
+    const dateFormatOptions: Intl.DateTimeFormatOptions = {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    }
+
+    return date.toLocaleString('de', dateFormatOptions)
+  }
+  getIngredientAmountTypeName(amountType: IngredientAmountType): string {
+    return IngredientAmountTypeName.get(amountType) ?? '';
   }
 }
