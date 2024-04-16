@@ -1,0 +1,2 @@
+<button *ngIf="!isLoggedIn()" class="login" (click)="login()">Login</button>
+<button *ngIf="isLoggedIn()" class="login" (click)="openLogoutDialog()">Logout</button>
