@@ -29,10 +29,6 @@ button {
   height: 40px;
 }
 
-button:disabled{
-  background: grey;
-  pointer-events: none;
-}
 
 
 @media (min-width: 500px) and (max-width: 768px) {
