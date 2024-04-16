@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /*Test*/
 }
 
 
@@ -34,6 +33,11 @@ button.primary:active {
   background-color: #4a47a3;
 }
 
+button:disabled{
+  background: grey !important;
+  pointer-events: none;
+}
+
 html, body {
   height: 100%;
 }
@@ -41,4 +45,13 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mdc-dialog__surface {
+  background-color: var(--accent-color) !important;
+  border-radius: 8px !important;
+}
+
+.mdc-dialog__title, .mdc-dialog__content, .mdc-button {
+  color: var(--text-color) !important;
 }
