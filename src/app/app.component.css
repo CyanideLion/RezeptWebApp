@@ -10,14 +10,14 @@ header {
   box-shadow: 0px 5px 25px var(--shadow-color);
 }
 
-a.button-corner {
+div.button-corner {
   align-content: center;
   align-items: center;
   display: flex;
   padding: 10px;
 }
 
-a.brand-logo {
+div.brand-logo {
   align-content: center;
   padding-top: 20px;
 }
