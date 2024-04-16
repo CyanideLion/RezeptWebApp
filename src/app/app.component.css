@@ -7,20 +7,22 @@ header {
   justify-content: space-between;
   height: 60px;
   padding: var(--content-padding);
-  box-shadow: 0px 5px 25px var(--shadow-color);
+  box-shadow: 0 5px 25px var(--shadow-color);
 }
 
-app-theme-toggle {
+div.button-corner {
+  align-content: center;
+  align-items: center;
+  display: flex;
   padding: 10px;
-
 }
 
-a {
+div.brand-logo {
   align-content: center;
   padding-top: 20px;
 }
 
-.brand-logo {
+img.brand-logo {
   height: 100px;
 }
 

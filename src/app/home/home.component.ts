@@ -16,11 +16,7 @@ import {SearchInputComponent} from "../search-input/search-input.component";
   template: `
     <section>
       <app-search-input (textChange)="onTextChange($event)"></app-search-input>
-      <button class="primary" type="button" disabled>Filter (Coming soon™)</button> <!-- not working yet -->
-<!--      <form>-->
-<!--        <input type="text" placeholder="Rezept suchen" #filter>-->
-<!--        <button class="primary" type="button" (click)="filterResults(filter.value)">Suchen</button>-->
-<!--      </form>-->
+      <button class="primary" type="button" disabled>Filter (Coming soon™)</button>  <!-- TODO: Add functionality to button-->
     </section>
     <section class="results">
       <app-recipeCollection *ngFor="let recipe of filteredRecipeList" [recipe]="recipe"></app-recipeCollection>

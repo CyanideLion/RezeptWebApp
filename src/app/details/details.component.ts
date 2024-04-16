@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {RecipeService} from "../recipe.service";
+import {GoogleApiService} from "../google-api.service";
 import {
   Ingredient,
   IngredientAmountType,
@@ -9,6 +10,7 @@ import {
 } from '../recipe'
 import {NgForOf, NgIf} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import {UserInfo} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-details',
@@ -26,12 +28,8 @@ import {MatIcon} from "@angular/material/icon";
       <section class="listing-description">
         <h2 class="listing-heading">{{ recipe?.name }}</h2>
         <p class="durationTotal">{{ recipe?.durationTotal }} Minuten</p>
-        <!--        <img *ngIf="recipe?.vegetarian" src="../../assets/425px-Vegetarian-mark.svg.png" class="icon" alt="Vegetarisch">-->
-<!--        <mat-icon *ngIf="recipe?.vegetarian" class="material-symbols-outlined">eco</mat-icon>-->
         <span *ngIf="recipe?.vegetarian" class="material-symbols-outlined">eco</span>
-<!--        <mat-icon *ngIf="recipe?.vegan" class="material-symbols-outlined">psychiatry</mat-icon>-->
         <span *ngIf="recipe?.vegan" class="material-symbols-outlined">temp_preferences_eco</span>
-        <!--        <img *ngIf="recipe?.vegan" src="../../assets/Vegan_friendly_icon.png" class="icon" alt="Vegan">-->
       </section>
       <section class="listing-features">
         <h2 class="section-heading">Zubereitung</h2>
@@ -55,6 +53,7 @@ import {MatIcon} from "@angular/material/icon";
           <li>Rezept von: {{ recipe?.source }}</li>
           <li>Hinzugefügt am {{ recipe && formatDate(recipe.date) }}</li>
         </ul>
+        <button *ngIf="isLoggedIn()" class="primary" type="button" disabled>Bearbeiten (Coming soon™)</button> <!-- TODO: Add functionality to button-->
 
 
       </section>
@@ -67,11 +66,15 @@ export class DetailsComponent {
   recipeService = inject(RecipeService);
   recipe: Recipe | undefined;
   ingredientList: Ingredient[] | undefined;
+  userInfo?: UserInfo
 
-  constructor() {
+  constructor(private readonly google: GoogleApiService) {
+    google.userProfileSubject.subscribe(info => {
+      this.userInfo = info
+    })
     const recipeId = Number(this.route.snapshot.params['id']);
     this.recipe = this.recipeService.getRecipeByID(recipeId);
-    this.ingredientList  = this.recipeService.getAllIngredients(recipeId);
+    this.ingredientList = this.recipeService.getAllIngredients(recipeId);
   }
 
   formatDate(dateString: string): string {
@@ -86,7 +89,17 @@ export class DetailsComponent {
 
     return date.toLocaleString('de', dateFormatOptions)
   }
+
   getIngredientAmountTypeName(amountType: IngredientAmountType): string {
     return IngredientAmountTypeName.get(amountType) ?? '';
   }
+
+  isLoggedIn(): boolean {
+    return this.google.isLoggedIn()
+  }
+
+  logout(): void {
+    this.google.signOut()
+  }
+
 }

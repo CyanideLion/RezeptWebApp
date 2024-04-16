@@ -2,10 +2,13 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
   <header class="navbar">
-    <a [routerLink]="['']">
+    <div class="brand-logo" [routerLink]="['']">
       <img class="brand-logo" src="assets/RezeptWebAppLogo.svg" alt="Logo" aria-hidden="true">
-    </a>
-    <app-theme-toggle></app-theme-toggle>
+    </div>
+    <div class="button-corner">
+      <app-login-button></app-login-button>
+      <app-theme-toggle></app-theme-toggle>
+    </div>
   </header>
   <section class="content">
     <router-outlet></router-outlet>
